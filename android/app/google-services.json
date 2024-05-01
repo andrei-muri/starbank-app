@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "153275793850",
+    "project_id": "starbank-5503b",
+    "storage_bucket": "starbank-5503b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153275793850:android:59e66b693f9e3ef3bcdd83",
+        "android_client_info": {
+          "package_name": "com.example.app_first_may"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoLF8OhpzBzaunVIPoERSh8x8VF2IfAZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
