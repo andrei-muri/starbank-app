@@ -20,7 +20,7 @@ class _SplashPageState extends State<SplashPage> {
     await Future.delayed(const Duration(milliseconds: 2500), () {});
     if(!mounted) return;
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LoginPage()));
+        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   @override
