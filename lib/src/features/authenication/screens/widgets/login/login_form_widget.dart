@@ -1,8 +1,6 @@
 import 'package:app_first_may/src/common/widgets/authentication/form_field_widget.dart';
 import 'package:app_first_may/src/constants/sizes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 
 class LoginFormWidget extends StatelessWidget {
@@ -56,9 +54,8 @@ class LoginFormWidget extends StatelessWidget {
                 //Sign In Button
                 SizedBox(
                     width: 165,
-                    height: 50,
+                    height: 55,
                     child: ElevatedButton(
-                        style: ButtonStyle(),
                         onPressed: () {},
                         child: const Text('Sign In'))),
                 const SizedBox(height: Sizes.spaceBtwItems),
@@ -66,7 +63,7 @@ class LoginFormWidget extends StatelessWidget {
                 //Create Account Button
                 SizedBox(
                     width: 165,
-                    height: 50,
+                    height: 55,
                     child: ElevatedButton(
                         onPressed: () {}, child: const Text('Create account'))),
               ],)

@@ -1,3 +1,4 @@
+import 'package:app_first_may/src/constants/colors.dart';
 import 'package:app_first_may/src/features/authenication/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,7 +27,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff242143),
+      backgroundColor: CustomColors.backgroundColor,
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.

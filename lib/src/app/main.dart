@@ -1,3 +1,4 @@
+import 'package:app_first_may/src/constants/colors.dart';
 import 'package:app_first_may/src/features/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -36,8 +37,8 @@ class MyApp extends StatelessWidget {
   ElevatedButtonThemeData getButtonTheme() {
     return ElevatedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(const Color(0xffffc842)),
-          foregroundColor: MaterialStateProperty.all(const Color(0xff453308)),
+          backgroundColor: MaterialStateProperty.all(CustomColors.buttonYellow),
+          foregroundColor: MaterialStateProperty.all(CustomColors.buttonYellowText),
           elevation: MaterialStateProperty.all(4.0),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
