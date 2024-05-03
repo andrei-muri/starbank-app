@@ -1,8 +1,6 @@
 import 'package:app_first_may/src/features/splash/splash_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/widgets.dart';
 
 import '../backend/firebase_options.dart';
 void main() async{
@@ -14,7 +12,6 @@ void main() async{
     print("Firebase initialized successfully");
   } catch (e) {
     print("Firebase initialization failed: $e");
-    // Optionally, you might want to set up error reporting or logging here.
   }
 
   runApp(const MyApp());
@@ -26,11 +23,30 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        elevatedButtonTheme: getButtonTheme(),
+      ),
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),
+      home: const SplashPage(),
     );
+  }
+
+  ElevatedButtonThemeData getButtonTheme() {
+    return ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(const Color(0xffffc842)),
+          foregroundColor: MaterialStateProperty.all(const Color(0xff453308)),
+          elevation: MaterialStateProperty.all(4.0),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          padding: MaterialStateProperty.all(const EdgeInsets.all(12)),
+        ),
+      );
   }
 }
 

@@ -11,13 +11,14 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-        backgroundColor: Color(0xff121212),
+        backgroundColor: Color(0xff242143),
         body: SingleChildScrollView(
             child: Padding(
                 padding: SpacingStyle.paddingWithApBarHeight,
                 child: Center(
                   child: Column(
                     children: [
+                      SizedBox(height: 50),
                       //Logo and text
                       LoginHeaderWidget(),
 
