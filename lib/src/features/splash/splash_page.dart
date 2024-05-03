@@ -26,7 +26,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff121212),
+      backgroundColor: const Color(0xff242143),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
