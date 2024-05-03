@@ -96,7 +96,7 @@ class SignUpScreen extends StatelessWidget {
                               suffixIcon: const Icon(Iconsax.eye_slash)),
                         ),
                         const SizedBox(
-                          height: Sizes.spaceBtwSections,
+                          height: Sizes.spaceBtwInputFields,
                         ),
               
                       ///confirm password
