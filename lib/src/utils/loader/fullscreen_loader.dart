@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 class FullScreenLoader {
   /// open a full-screen loading dialog with a given text and animation
 
-  static void openLoadingDialog(String textDisplayed, String animation,BuildContext context) {
+  static void openLoadingDialog(String textDisplayed, String animation, BuildContext context) {
     showDialog(
-        context: context, // Use Get.OVerlayContext for overlay dialogs
+        context: context, // Use Get.OVerlayContext for overlay dialogs -- basically to put the dialog on the overlay that we want
         barrierDismissible: false, // the dialog can't be dismissed by tapping outside it
         builder: (_) => PopScope(
             canPop: false, // disable popping with the back button

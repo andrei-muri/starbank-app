@@ -106,17 +106,27 @@ class FormSignUpWidget extends StatelessWidget {
           ),
 
           ///confirm password
-          TextFormField(
-            controller: controller.confirmPassword,
-            obscureText: true,
-            expands: false,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+          Obx(
+            () => TextFormField(
+              controller: controller.confirmPassword,
+              validator: (value) => Validator.validateConfirmPassword(controller.password.text,value),
+              obscureText: controller.hideConfirmPassword.value,
+              expands: false,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  labelText: Texts.confirmPassword,
+                  prefixIcon: const Icon(Iconsax.password_check),
+                suffixIcon: IconButton(
+                  icon: Icon(controller.hideConfirmPassword.value
+                      ? Iconsax.eye_slash
+                      : Iconsax.eye),
+                  onPressed: () => controller.hideConfirmPassword.value =
+                  !controller.hideConfirmPassword.value,
                 ),
-                labelText: Texts.confirmPassword,
-                prefixIcon: const Icon(Iconsax.password_check),
-                suffixIcon: const Icon(Iconsax.eye_slash)),
+              ),
+            ),
           ),
           const SizedBox(
             height: Sizes.spaceBtwSections,

@@ -26,7 +26,7 @@ class Warnings{
         isDismissible: true,
         shouldIconPulse: true,
         colorText: Colors.white,
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.orange,
         snackPosition: SnackPosition.BOTTOM,
         duration:  const Duration(seconds: 3),
         margin: const EdgeInsets.all(20),
@@ -46,6 +46,21 @@ class Warnings{
         duration:  const Duration(seconds: 3),
         margin: const EdgeInsets.all(10),
         icon:  const Icon(Iconsax.warning_2, color: Colors.white,)
+    );
+  }
+
+  static successBar({required title, message= ''}){
+    Get.snackbar(
+        title,
+        message,
+        isDismissible: true,
+        shouldIconPulse: true,
+        colorText: Colors.white,
+        backgroundColor: Colors.blue,
+        snackPosition: SnackPosition.BOTTOM,
+        duration:  const Duration(seconds: 3),
+        margin: const EdgeInsets.all(20),
+        icon:  const Icon(Iconsax.warning_2, color: Colors.black,)
     );
   }
 
