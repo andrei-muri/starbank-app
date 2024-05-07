@@ -1,6 +1,6 @@
 import 'package:app_first_may/src/backend/authentication_repository/auth_repo.dart';
 import 'package:app_first_may/src/backend/user/user_repo.dart';
-import 'package:app_first_may/src/backend/user/usermodel.dart';
+import 'package:app_first_may/src/features/authenication/models/user_model.dart';
 import 'package:app_first_may/src/constants/images.dart';
 import 'package:app_first_may/src/utils/loader/fullscreen_loader.dart';
 import 'package:app_first_may/src/utils/warnings/warnings.dart';

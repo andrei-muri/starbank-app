@@ -1,6 +1,6 @@
 
 
-import 'package:app_first_may/src/backend/user/usermodel.dart';
+import 'package:app_first_may/src/features/authenication/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 

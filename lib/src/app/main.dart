@@ -1,18 +1,13 @@
-<<<<<<< HEAD
+
 import 'package:app_first_may/src/constants/colors.dart';
-=======
 import 'package:app_first_may/src/bindings/general_bidings.dart';
->>>>>>> feature/login-backend
+
 import 'package:app_first_may/src/features/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-<<<<<<< HEAD
-=======
-import 'package:flutter/widgets.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
->>>>>>> feature/login-backend
 
 import '../backend/authentication_repository/auth_repo.dart';
 import '../backend/firebase_options.dart';
@@ -45,6 +40,7 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       title: 'Flutter Demo',
+      theme: ThemeData(elevatedButtonTheme: getButtonTheme()),
       initialBinding: GeneralBindings(),
       debugShowCheckedModeBanner: false,
       home: const SplashPage(),

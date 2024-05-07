@@ -1,13 +1,18 @@
+import 'package:app_first_may/src/common/styles/form_field_style.dart';
 import 'package:app_first_may/src/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class FormFieldWidget extends StatefulWidget {
+  final String? Function(String?) validator;
+  final TextEditingController controller;
   final IconData prefixIcon;
   final IconData? suffixIcon;
   final String label;
 
   const FormFieldWidget(
       {super.key,
+      required this.validator,
+      required this.controller,
       required this.prefixIcon,
       required this.label,
       this.suffixIcon});
@@ -55,37 +60,10 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: TextFormField(
+        controller: widget.controller,
+        validator: widget.validator,
         focusNode: _focusNode,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.0),
-              borderSide:
-                  const BorderSide(color: CustomColors.inputFieldsBorderColor, width: 1.0)),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.0),
-              borderSide: const BorderSide(
-                color: CustomColors.inputFieldsBorderColor,
-                width: 1.0,
-              )),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.0),
-              borderSide:
-                  const BorderSide(color: CustomColors.inputFieldsBorderFocusedColor, width: 1.0)),
-          filled: true,
-          fillColor:
-              _isFocused ? CustomColors.inputFieldsFillFocusedColor  : CustomColors.inputFieldsFillColor,
-          prefixIcon: Icon(widget.prefixIcon, color: CustomColors.backgroundColor),
-          labelText: widget.label,
-          labelStyle: TextStyle(
-              fontSize: _isFocused ? 20 : null,
-              color: _isFocused
-                  ? CustomColors.inputFieldsTextFocusedColor
-                  : CustomColors.inputFieldsTextColor),
-          suffixIcon: widget.suffixIcon != null
-              ? Icon(widget.suffixIcon, color: CustomColors.backgroundColor)
-              : null,
-        ),
-      ),
-    );
+        decoration: FormFieldInputDecoration.lilaInputDecoration(_isFocused, widget.prefixIcon, widget.suffixIcon, widget.label), 
+    ));
   }
 }
