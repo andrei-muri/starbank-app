@@ -1,5 +1,6 @@
 import 'package:app_first_may/src/constants/colors.dart';
 import 'package:app_first_may/src/features/authenication/screens/login_screen.dart';
+import 'package:app_first_may/src/features/authenication/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

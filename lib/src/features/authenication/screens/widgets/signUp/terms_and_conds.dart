@@ -1,6 +1,8 @@
 import 'package:app_first_may/src/constants/sizes.dart';
 import 'package:app_first_may/src/constants/texts.dart';
+import 'package:app_first_may/src/features/authenication/controllers/signup_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class TermsAndCondsWidget extends StatelessWidget {
   const TermsAndCondsWidget({
@@ -9,14 +11,17 @@ class TermsAndCondsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = SignUpController.instance;
     return Row(
       children: [
         SizedBox(
           width: 24,
           height: 24,
-          child: Checkbox(
-            value: true,
-            onChanged: (value) {},
+          child: Obx(
+            () => Checkbox(
+              value: controller.privacyPolicy.value,
+              onChanged: (value) => controller.privacyPolicy.value = !controller.privacyPolicy.value,
+            ),
           ),
         ),
         const SizedBox(
