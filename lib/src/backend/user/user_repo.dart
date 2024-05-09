@@ -12,11 +12,24 @@ class UserRepository extends GetxController{
 
 
   /// Function to save user data to Firestore.
-  Future<void> saveUserRecord(UserModel user) async {
+  Future<void> saveUserRecord(UserModel user, String person) async {
     try {
-      await _db.collection("Users").doc(user.id).set(user.toMap());
+      await _db.collection(person).doc(user.email).set(user.toMap());
     }catch (e) {
       throw Exception('Error saving user record');
     }
   }
+
+  //Function to get user details based on user ID
+  // Future<UserModel> fetchUserDetails()async{
+  //   try{
+  //     final documentSnapshot = await _db.collection("Users").doc().get();
+  //     if(documentSnapshot.exists){
+  //       return UserModel.fromMap();
+  //     }
+  //     else{
+  //     }
+  //   }
+  // }
+
 }

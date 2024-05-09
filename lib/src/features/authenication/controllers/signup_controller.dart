@@ -2,6 +2,7 @@ import 'package:app_first_may/src/backend/authentication_repository/auth_repo.da
 import 'package:app_first_may/src/backend/user/user_repo.dart';
 import 'package:app_first_may/src/features/authenication/models/user_model.dart';
 import 'package:app_first_may/src/constants/images.dart';
+import 'package:app_first_may/src/features/Home/home.dart';
 import 'package:app_first_may/src/utils/loader/fullscreen_loader.dart';
 import 'package:app_first_may/src/utils/warnings/warnings.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,8 @@ class SignUpController extends GetxController {
   final lastName = TextEditingController(); // Controller for last name input
   final password = TextEditingController(); // Controller for password input
   final confirmPassword = TextEditingController(); // Controller for confirm password input
+  final student = false.obs;
+  final teacher = false.obs;
   GlobalKey<FormState> signupFormKey = GlobalKey<
       FormState>(); //Form key for form validation
 
@@ -43,7 +46,11 @@ class SignUpController extends GetxController {
       if (!signupFormKey.currentState!.validate()) {
         return;
       }
-
+      // student/teacher checked
+      if(!student.value && !teacher.value){
+        Warnings.warningSnackBar(title: "Tick student or teacher", message: "In order to create account, you must tick if you are a student or teacher");
+        return;
+      }
       // Privacy Policy Check
       if (!privacyPolicy.value) {
         Warnings.warningSnackBar(title: "Accept Privacy Policy",
@@ -57,22 +64,29 @@ class SignUpController extends GetxController {
           email.text.trim(), password.text.trim());
 
       // Save Authenticated user data in the Firebase Firestore
-      final newUser = UserModel(id: userCredential.user!.uid,
+      final newUser = UserModel(
+        id: userCredential.user!.uid,
         firstName: firstName.text.trim(),
         lastName: lastName.text.trim(),
-        email: email.text.trim(),);
+        email: email.text.trim(),
+      );
 
       final userRepository = Get.put(UserRepository());
-      await userRepository.saveUserRecord(newUser);
+      if(student.value){
+        await userRepository.saveUserRecord(newUser,"Students");
+      }
+      else{
+        await userRepository.saveUserRecord(newUser,"Teachers");
+      }
 
       // Show Succes Message
       Warnings.successBar(title: "Congratulations", message: 'Your account has been created.');
       // Move to verify Email Screen
-
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => const HomeScreen()));
 
     } catch (e) {
       Warnings.errorSnackBar(title: "Oh snap", message: e.toString());
-      print(e);
     } finally {
       FullScreenLoader.stopdLoading();
     }
