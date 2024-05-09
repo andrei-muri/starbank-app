@@ -24,6 +24,7 @@ class AuthenticationRepository extends GetxController{
 
   ///Function to Show relevant Screen
   screenRedirect() async{
+    print("Good!\n");
     // //Local Storage
     // deviceStorage.writeIfNull('IsFirstTime', true);
     // // check if it's the first time launching the app

@@ -1,10 +1,13 @@
 import 'package:app_first_may/src/constants/colors.dart';
-import 'package:app_first_may/src/constants/sizes.dart';
+import 'package:app_first_may/src/features/authenication/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
 class FormFieldInputDecoration {
 
-  static InputDecoration lilaInputDecoration(bool isFocus, IconData prefixIcon, IconData? suffixIcon, String label) {
+  static InputDecoration lilaInputDecoration(bool isFocus, IconData prefixIcon, String label, bool isPassword) {
+    LoginController controller = Get.find();
      return InputDecoration(
       border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15.0),
@@ -29,9 +32,25 @@ class FormFieldInputDecoration {
               color: isFocus
                   ? CustomColors.inputFieldsTextFocusedColor
                   : CustomColors.inputFieldsTextColor),
-          suffixIcon: suffixIcon != null
-              ? Icon(suffixIcon, color: CustomColors.backgroundColor)
-              : null,
+          suffixIcon: isPassword 
+            ? IconButton(
+              onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
+              icon: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye, color: CustomColors.backgroundColor), 
+            ) 
+            : null,
     );
+  }
+
+  static BoxDecoration lilaShadowDecoration() {
+    return  BoxDecoration(
+              boxShadow: const [ BoxShadow(
+              color: CustomColors.shadowColor,
+              spreadRadius: 1,
+              blurRadius: 4,
+              offset: Offset(1.5, 2))
+        ],
+        borderRadius: BorderRadius.circular(15.0),
+      )
+    ;
   }
 }

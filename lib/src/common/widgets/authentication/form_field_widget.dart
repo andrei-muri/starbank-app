@@ -2,6 +2,7 @@ import 'package:app_first_may/src/common/styles/form_field_style.dart';
 import 'package:app_first_may/src/constants/colors.dart';
 import 'package:flutter/material.dart';
 
+@Deprecated("Old Form field. Now It is used directly in login_form_widget. Also it was created a form field style.")
 class FormFieldWidget extends StatefulWidget {
   final String? Function(String?) validator;
   final TextEditingController controller;
@@ -63,7 +64,7 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
         controller: widget.controller,
         validator: widget.validator,
         focusNode: _focusNode,
-        decoration: FormFieldInputDecoration.lilaInputDecoration(_isFocused, widget.prefixIcon, widget.suffixIcon, widget.label), 
+        decoration: FormFieldInputDecoration.lilaInputDecoration(_isFocused, widget.prefixIcon, widget.label, false), 
     ));
   }
 }

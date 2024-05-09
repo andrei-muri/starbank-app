@@ -1,15 +1,15 @@
 import 'package:app_first_may/src/common/styles/form_field_style.dart';
-import 'package:app_first_may/src/common/widgets/authentication/form_field_widget.dart';
 import 'package:app_first_may/src/constants/colors.dart';
 import 'package:app_first_may/src/constants/sizes.dart';
 import 'package:app_first_may/src/features/authenication/controllers/login_controller.dart';
 import 'package:app_first_may/src/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:iconsax/iconsax.dart';
 
 class LoginFormWidget extends StatefulWidget {
-   const LoginFormWidget({
+  const LoginFormWidget({
     super.key,
   });
 
@@ -68,48 +68,28 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           children: [
             ///E-mail
             Container(
-              decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                      color: CustomColors.shadowColor,
-                      spreadRadius: 1,
-                      blurRadius: 4,
-                      offset: Offset(1.5, 2))
-                ],
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              decoration: FormFieldInputDecoration.lilaShadowDecoration(),
               child: TextFormField(
                 controller: controller.email,
                 focusNode: _emailFocusNode,
                 validator: (value) => Validator.validateEmail(value),
-                decoration: FormFieldInputDecoration.lilaInputDecoration(
-                    _isEmailFocused, Iconsax.direct_right, null, 'E-mail'),
+                decoration: FormFieldInputDecoration.lilaInputDecoration(_isEmailFocused, Iconsax.direct_right, 'E-mail', false),
               ),
             ),
             const SizedBox(height: Sizes.spaceBtwInputFields),
 
             ///Password
-            Container(
-                decoration: BoxDecoration(
-                  boxShadow: const [
-                    BoxShadow(
-                        color: CustomColors.shadowColor,
-                        spreadRadius: 1,
-                        blurRadius: 4,
-                        offset: Offset(1.5, 2))
-                  ],
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: TextFormField(
-                  controller: controller.password,
-                  focusNode: _passwordFocusNode,
-                  validator: (value) => Validator.validateEmail(value),
-                  decoration: FormFieldInputDecoration.lilaInputDecoration(
-                      _isPasswordFocused,
-                      Iconsax.password_check,
-                      Iconsax.eye_slash,
-                      'Password'),
-                )),
+            Obx(
+              () => Container(
+                  decoration: FormFieldInputDecoration.lilaShadowDecoration(),
+                  child: TextFormField(
+                    controller: controller.password,
+                    focusNode: _passwordFocusNode,
+                    validator: (value) => Validator.validateEmptyText('Password' ,value),
+                    obscureText: controller.hidePassword.value,
+                    decoration: FormFieldInputDecoration.lilaInputDecoration(_isPasswordFocused, Iconsax.password_check, 'Password', true),
+                  )),
+            ),
             const SizedBox(height: Sizes.spaceBtwInputFields / 2),
 
             ///Remember me
@@ -118,11 +98,10 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
               children: [
                 Row(
                   children: [
-                    Checkbox(
-                      value: true,
-                      onChanged: (value) {},
-                      activeColor: const Color(0xff5A5494),
-                    ),
+                    Obx (() => Checkbox(
+                      value: controller.rememberMe.value, 
+                      onChanged: (value) => controller.rememberMe.value = !controller.rememberMe.value, 
+                      activeColor: CustomColors.buttonYellow,)),
                     const Text('Remember me',
                         style: TextStyle(color: Colors.white))
                   ],
@@ -142,14 +121,13 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                 SizedBox(
                     width: 165,
                     height: 55,
-                    child: ElevatedButton(
-                        onPressed: () {}, child: const Text('Sign In'))),
+                    ///A elevatedButton theme is created
+                    child: ElevatedButton( onPressed: () => controller.emailAndPasswordSignIn(context), child: const Text('Sign In'))),
                 const SizedBox(height: Sizes.spaceBtwItems),
                 SizedBox(
                     width: 165,
                     height: 55,
-                    child: ElevatedButton(
-                        onPressed: () {}, child: const Text('Create account'))),
+                    child: ElevatedButton( onPressed: () {}, child: const Text('Create account'))),
               ],
             )
           ],
@@ -158,5 +136,3 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     );
   }
 }
-
-
