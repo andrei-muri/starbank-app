@@ -25,10 +25,10 @@ class UserModel {
   // Construct a UserModel from a map (for example, from Firestore data)
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      id: map['id'],
+     id: map['id'],
       firstName: map['firstName'],
       lastName: map['lastName'],
-      email: map['email'],
+     email: map['email'],
     );
   }
 }
