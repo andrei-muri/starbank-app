@@ -6,6 +6,7 @@ import 'package:app_first_may/src/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
 
 class FormSignUpWidget extends StatelessWidget {
   const FormSignUpWidget({
@@ -109,24 +110,75 @@ class FormSignUpWidget extends StatelessWidget {
           Obx(
             () => TextFormField(
               controller: controller.confirmPassword,
-              validator: (value) => Validator.validateConfirmPassword(controller.password.text,value),
+              validator: (value) => Validator.validateConfirmPassword(
+                  controller.password.text, value),
               obscureText: controller.hideConfirmPassword.value,
               expands: false,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  labelText: Texts.confirmPassword,
-                  prefixIcon: const Icon(Iconsax.password_check),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                labelText: Texts.confirmPassword,
+                prefixIcon: const Icon(Iconsax.password_check),
                 suffixIcon: IconButton(
                   icon: Icon(controller.hideConfirmPassword.value
                       ? Iconsax.eye_slash
                       : Iconsax.eye),
                   onPressed: () => controller.hideConfirmPassword.value =
-                  !controller.hideConfirmPassword.value,
+                      !controller.hideConfirmPassword.value,
                 ),
               ),
             ),
+          ),
+          const SizedBox(
+            height: Sizes.spaceBtwInputFields,
+          ),
+          Row(
+            children: [
+              Row(
+                children: [
+                  Obx(
+                    () => RoundCheckBox(
+                        checkedColor: Colors.deepPurple,
+                        isChecked: controller.student.value,
+                        onTap: (value) {
+                          controller.teacher.value = false;
+                          controller.student.value = !controller.student.value;
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Text(
+                    "Student",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 120,
+              ),
+              Row(
+                children: [
+                  Obx(
+                    () => RoundCheckBox(
+                        checkedColor: Colors.deepPurple,
+                        isChecked: controller.teacher.value,
+                        onTap: (value) {
+                          controller.teacher.value = !controller.teacher.value;
+                          controller.student.value = false;
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Text(
+                    "Teacher",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              )
+            ],
           ),
           const SizedBox(
             height: Sizes.spaceBtwSections,
