@@ -18,7 +18,7 @@ class LoginHeaderWidget extends StatelessWidget {
           child: SvgPicture.asset(Images.steleiImg),
         ),
         const Padding(
-          padding: EdgeInsets.only(top: Sizes.md),
+          padding: EdgeInsets.only(top: Sizes.sm),
           child: Text(
             'Welcome',
             style: TextStyle(

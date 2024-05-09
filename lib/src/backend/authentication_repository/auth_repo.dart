@@ -24,6 +24,7 @@ class AuthenticationRepository extends GetxController{
 
   ///Function to Show relevant Screen
   screenRedirect() async{
+    print("Good!\n");
     // //Local Storage
     // deviceStorage.writeIfNull('IsFirstTime', true);
     // // check if it's the first time launching the app
@@ -34,6 +35,30 @@ class AuthenticationRepository extends GetxController{
 
 
   /* ---------------------------------------------Email & Password Sign in ------------------------ */
+  ///Login
+  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw Exception('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        throw Exception('Wrong password provided for that user.');
+      } else if (e.code == 'invalid-email') {
+        throw Exception('The email address is not valid.');
+      } else if (e.code == 'user-disabled') {
+        throw Exception('This user has been disabled.');
+      } else if (e.code == 'too-many-requests') {
+        throw Exception('Too many requests. Try again later.');
+      } else if (e.code == 'operation-not-allowed') {
+        throw Exception('Signing in with email and password is not enabled.');
+      }
+      throw Exception('An error occurred during login   : ${e.message}');
+    } catch (e) {
+      throw Exception('An undefined Error happened.');
+    }
+  } 
+
 
   ///Registrer
   Future<UserCredential> registerWithEmailAndPassword(String email, String password) async {
